@@ -1,6 +1,7 @@
-json.array! @product.each do |contact|
-  json.name contact.name
-  json.price contact.price
-  json.image contact.image_url
-  json.description contact.description
+json.array! @product.each do |product|
+  json.id product.id
+  json.name product.name
+  json.price product.price
+  json.image product.image_url
+  json.description product.description
 end
