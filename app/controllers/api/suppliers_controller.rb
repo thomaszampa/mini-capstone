@@ -1,6 +1,6 @@
 class Api::SuppliersController < ApplicationController
   def index
-    @supplier = supplier.all
+    @supplier = Supplier.all
 
     search_input = params[:search]
     if search_input
@@ -13,7 +13,7 @@ class Api::SuppliersController < ApplicationController
   end
 
   def create
-    @supplier = supplier.new(
+    @supplier = Supplier.new(
       name: params["name"],
       email: params["email"],
       phone_number: params["phone_number"],
@@ -27,12 +27,12 @@ class Api::SuppliersController < ApplicationController
   end
 
   def show
-    @supplier = supplier.find_by(id: params[:id])
+    @supplier = Supplier.find_by(id: params[:id])
     render "show.json.jbuilder"
   end
 
   def update
-    @supplier = supplier.find_by(id: params[:id])
+    @supplier = Supplier.find_by(id: params[:id])
     @supplier.name = params["name"] || @supplier.name 
     @supplier.email = params["email"] || @supplier.email 
     @supplier.phone_number = params["phone_number"] || @supplier.phone_number 
@@ -45,7 +45,7 @@ class Api::SuppliersController < ApplicationController
   end
 
   def destroy
-    @supplier = supplier.find_by(id: params[:id])
+    @supplier = Supplier.find_by(id: params[:id])
     @supplier.destroy
     render json: {message: "supplier successfully destroyed!"}
   end

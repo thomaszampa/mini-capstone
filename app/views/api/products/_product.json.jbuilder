@@ -1,9 +1,10 @@
 json.id product.id
+json.supplier product.supplier.name
 json.name product.name
 json.price product.price
 json.tax product.tax
 json.total product.total
 json.discounted? product.is_discounted?
 json.in_stock product.in_stock
-json.image product.image_url
+json.images product.image_url_list
 json.description product.description

@@ -1,15 +1,17 @@
-supplier = Supplier.new(
-  name: "Reckless Records",
-  email: "orders@reckless.com",
-  phone_number: "(773) 235-3727",
-  supplier_id: 001
+image = Image.new(
+  url: "https://i1.cdn.hhv.de/catalog/475x475/00377/377436_2.jpg",
+  product_id: 1
   )
-supplier.save
+image.save
 
-supplier = Supplier.new(
-  name: "Dusty Groove",
-  email: "dg@dustygroove.com",
-  phone_number: "(773) 342-5800",
-  supplier_id: 002
+image = Image.new(
+  url: "https://cdn-s3.allmusic.com/release-covers/400/0003/268/0003268950.jpg",
+  product_id: 2
   )
-supplier.save
+image.save
+
+image = Image.new(
+  url: "https://img.cdandlp.com/2014/11/imgL/117249020.jpg",
+  product_id: 3
+  )
+image.save

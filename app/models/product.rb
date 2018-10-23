@@ -6,6 +6,18 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   validates :description, length: { in: 10..500 }
 
+  belongs_to :supplier
+
+  # def supplier
+  #   Supplier.find_by(id: supplier_id)
+  # end
+
+  has_many :images
+
+  # def images
+  #   Image.where(product_id: id)
+  # end
+
   def is_discounted?
     price > 10 && false
   end
@@ -17,5 +29,14 @@ class Product < ApplicationRecord
 
   def total
     return @tax + price
+  end
+
+  def image_url_list
+    # list = []
+    # images.each do |image|
+    #   list << image.url
+    # end
+    # list
+    images.map { |image| image.url }
   end
 end
