@@ -1,13 +1,13 @@
 class Api::ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @product = Product.all
 
     search_input = params[:search]
     if search_input
-      @products = @products.where("name ILIKE ?", "%#{search_input}%")
+      @product = @product.where("name ILIKE ?", "%#{search_input}%")
     end
 
-    @products = @products.order(id: :asc)
+    @product = @product.order(id: :asc)
 
     render "index.json.jbuilder"
   end
