@@ -16,9 +16,14 @@ class Api::ProductsController < ApplicationController
     @product = Product.new(
       name: params["name"],
       price: params["price"],
-      description: params["description"]
+      description: params["description"],
+      supplier_id: params["supplier_id"]
       )
     if @product.save
+      Image.create(
+        url: params[:image_url],
+        product_id: @product.id
+        )
       render "show.json.jbuilder"
     else
       render json: {errors: @product.errors.full_messages}, status: 422
