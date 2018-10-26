@@ -1,7 +1,9 @@
 class Api::OrdersController < ApplicationController
+  before_action :authenticate_user
+
   def index
-    @order = Order.all
-    render json: {orders: }
+    @order = current_user.orders
+    render "index.json.jbuilder"
   end
 
   def create
@@ -12,7 +14,7 @@ class Api::OrdersController < ApplicationController
       quantity: params["quantity"],
       subtotal: product.price * params["quantity"].to_i,
       tax: params["quantity"] * product.tax,
-      total: product.price * params["quantity"].to_i + product.tax,
+      total: product.total * params["quantity"].to_i,
       )
     if @order.save
       render json: {message: "Product successfully ordered!"}
