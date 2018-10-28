@@ -17,7 +17,6 @@ class Api::SuppliersController < ApplicationController
       name: params["name"],
       email: params["email"],
       phone_number: params["phone_number"],
-      supplier_id: params["supplier_id"]
       )
     if @supplier.save
       render "show.json.jbuilder"
@@ -36,7 +35,6 @@ class Api::SuppliersController < ApplicationController
     @supplier.name = params["name"] || @supplier.name 
     @supplier.email = params["email"] || @supplier.email 
     @supplier.phone_number = params["phone_number"] || @supplier.phone_number 
-    @supplier.supplier_id = params["supplier_id"] || @supplier.supplier_id 
     if @supplier.save
       render "show.json.jbuilder"
     else
