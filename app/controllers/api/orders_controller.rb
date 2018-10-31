@@ -7,25 +7,23 @@ class Api::OrdersController < ApplicationController
   end
 
   def create
-    product = Product.find_by(id: params[:product_id])
     @order = Order.new(
-      user_id: current_user.id,
-      product_id: params["product_id"],
-      quantity: params["quantity"],
-      subtotal: product.price * params["quantity"].to_i,
-      tax: params["quantity"] * product.tax,
-      total: product.total * params["quantity"].to_i,
-      )
+      user_id: current_user.id
+    )
     if @order.save
+      carted_products = CartedProduct.where(user_id: current_user.id, status: "carted")
+
+      carted_products.each do |carted_product|
+        carted_product.update(status: "purchased", order_id: @order.id)
+      end
+
+      @order.calculate_subtotal
+      @order.calculate_tax
+      @order.calculate_total
+
       render json: {message: "Product successfully ordered!"}
     else
-      render json: {errors: order.errors.full_messages}, status: :bad_request
+      render json: {errors: @order.errors.full_messages}, status: :bad_request
     end
-  end
-
-  def show
-  end
-
-  def update
   end
 end
