@@ -1,4 +1,6 @@
 <h3><%= @product.name %></h3>
 <h3><%= @product.price %></h3>
 <h3><%= @product.description %></h3>
+<a href="/products/<%= @product.id %>/edit">Edit this recipe</a>
+<a href="/products/<%= @product.id %>" data-method="delete">Destroy this recipe</a>
 <a href="/products">BACK TO ALL PRODUCTS</a>

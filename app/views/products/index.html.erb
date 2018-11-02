@@ -1,5 +1,9 @@
+<h1>TOMMY TWO TONE'S TUNES</h1>
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
-  <h3><%= product.price %></h3>
-  <h3><%= product.description %></h3>
+  <br>
+  <img src="<%= product.images.first.url %>">
+  <br>
+  <a href="/products/<%= product.id %>">Product Info</a>
+  <br>
 <% end %>
