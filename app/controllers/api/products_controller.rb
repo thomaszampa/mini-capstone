@@ -1,5 +1,5 @@
 class Api::ProductsController < ApplicationController
-  before_action :authenticate_admin, except: [:index, :show]
+  # before_action :authenticate_admin, except: [:index, :show]
 
   def index
     @product = Product.all
@@ -24,7 +24,7 @@ class Api::ProductsController < ApplicationController
       name: params["name"],
       price: params["price"],
       description: params["description"],
-      supplier_id: params["supplier_id"]
+      supplier_id: params["supplier_id"],
       )
     if @product.save
       Image.create(
